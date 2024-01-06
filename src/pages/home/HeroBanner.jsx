@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ContentWrapper from "../../components/ContentWrapper";
 import { useUpcommingMoviesQuery } from "../../api/fetchMovies";
@@ -6,51 +6,72 @@ import { generateTMDBImageUrl } from "../../utility/generateTMDBImageUrl";
 
 const Banner = () => {
   const [query, setQuery] = useState("");
+  const [background, setBackground] = useState("");
   const navigate = useNavigate();
 
   const { data, isLoading } = useUpcommingMoviesQuery("/movie/popular");
 
-  const randomIndex = Math.floor(Math.random() * data?.results?.length) || "";
-  const imagePath = data?.results?.[randomIndex]?.backdrop_path || "";
-  const background = generateTMDBImageUrl(imagePath);
+  // Randomly select an image from the fetched data
+  useEffect(() => {
+    if (data?.results?.length > 0) {
+      const randomIndex =
+        Math.floor(Math.random() * data?.results?.length) || "";
+      const imagePath = data?.results?.[randomIndex]?.backdrop_path || "";
+      const imgUrl = generateTMDBImageUrl(imagePath);
+      setBackground(imgUrl);
+    }
+  }, [data]);
 
+  // Function to navigate to the search page
   const handleSearch = (endpoint) => {
     if (endpoint !== "") {
       navigate(`/search/${endpoint}`);
     }
   };
 
+  // Define linear gradient style for the opacity layer
   const linearGradient = {
     backgroundImage:
       "linear-gradient(180deg, rgba(4, 21, 45, 0) 0%, #04152d 79.17%)",
   };
 
   return (
-    <div className="heroBanner relative  flex h-[450px] w-full items-center bg-[#04152d] md:h-[700px]">
+    <div className="heroBanner relative flex h-[450px] w-full items-center bg-[#04152d] md:h-[700px]">
+      {/* Display the background image */}
       {!isLoading && (
         <div className="backdrop-img absolute left-0 top-0 h-full w-full overflow-hidden opacity-50">
           <img
             src={background}
             className="h-full w-full object-cover object-center"
+            alt="Background"
           />
         </div>
       )}
+
+      {/* Apply linear gradient for the opacity layer */}
       <div
-        className="opacity-layer absolute bottom-0  left-0 h-[250px] w-full "
+        className="opacity-layer absolute bottom-0 left-0 h-[250px] w-full"
         style={linearGradient}
       ></div>
+
+      {/* Content */}
       <ContentWrapper>
-        <div className="heroBannerContent relative mx-auto flex max-w-[800px] flex-col items-center text-center text-white ">
+        <div className="heroBannerContent relative mx-auto flex max-w-[800px] flex-col items-center text-center text-white">
+          {/* Title */}
           <span className="title mb-2 text-[50px] font-bold md:mb-[-20px] md:text-[90px]">
             Welcome
           </span>
+
+          {/* Subtitle */}
           <span className="subTitle mb-[40px] text-[18px] font-medium md:text-[24px]">
             Millions of movies, TV shows and people to discover. Explore now
           </span>
-          <div className="searchInput flex w-full items-center ">
+
+          {/* Search input */}
+          <div className="searchInput flex w-full items-center">
             <input
               type="text"
-              placeholder="Search for movie or tv shows"
+              placeholder="Search for movie or TV shows"
               onChange={(e) => setQuery(e.target.value)}
               value={query}
               onKeyDown={(e) => e.key === "Enter" && handleSearch(query)}
