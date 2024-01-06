@@ -1,12 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { fetchTmdb } from "./fetchTmdb";
+import { fetchMovies } from "./fetchMovies";
 
 const store = configureStore({
   reducer: {
-    [fetchTmdb.reducerPath]: fetchTmdb.reducer,
+    [fetchMovies.reducerPath]: fetchMovies.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(fetchTmdb.middleware),
+    getDefaultMiddleware().concat(fetchMovies.middleware),
 });
 
 export default store;
