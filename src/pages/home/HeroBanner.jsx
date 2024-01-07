@@ -79,7 +79,7 @@ const Banner = () => {
             />
             <button
               onClick={() => handleSearch(query)}
-              className="h-[50px] w-[100px] cursor-pointer rounded-br-[30px] rounded-tr-[30px] border-0 border-transparent bg-gradient-to-r from-red-500 to-orange-500 text-base text-white outline-none md:h-[60px] md:w-[150px] md:text-lg"
+              className="h-[50px] w-[100px] cursor-pointer rounded-br-[30px] rounded-tr-[30px]  bg-gradient-to-r from-yellow-200 to-yellow-500  font-semibold text-[#333333]  md:h-[60px] md:w-[150px] md:text-lg"
             >
               Search
             </button>
