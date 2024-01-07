@@ -58,13 +58,12 @@ const Banner = () => {
       <ContentWrapper>
         <div className="heroBannerContent relative mx-auto flex max-w-[800px] flex-col items-center text-center text-white">
           {/* Title */}
-          <span className="title mb-2 text-[50px] font-bold md:mb-[-20px] md:text-[90px]">
-            Welcome
-          </span>
+          <span className="title text-3xl font-bold sm:text-4xl md:text-5xl xl:text-6xl">Welcome to FilmSeeKr</span>
 
           {/* Subtitle */}
-          <span className="subTitle mb-[40px] text-[18px] font-medium md:text-[24px]">
-            Millions of movies, TV shows and people to discover. Explore now
+          <span className="subTitle py-1 mb-8 leading-none">
+            Discover Countless Movies, TV Shows, and Intriguing Talents Awaiting
+            Your Exploration
           </span>
 
           {/* Search input */}
