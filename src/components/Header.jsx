@@ -24,6 +24,11 @@ const Header = () => {
       setSearchField((prev) => !prev);
     }
   };
+
+  const handleNevigate = (type) => {
+    navigate(`/explore/${type}`);
+    setMenu(false);
+  };
   return (
     <header className="fixed z-10 w-full">
       <section className="mx-auto  flex h-[60px]  items-center justify-between  bg-black bg-opacity-40 px-5 sm:px-8 md:px-12 lg:px-16">
@@ -32,6 +37,7 @@ const Header = () => {
           <img
             src="/assets/logo-yello.png"
             alt="logo"
+            onClick={() => navigate("/")}
             className="h-[40px] cursor-pointer"
           />
         </section>
@@ -58,8 +64,18 @@ const Header = () => {
         {/* Column 3: Navigation (visible from md breakpoint and above) */}
         <nav className={`hidden text-white md:block`}>
           <ul className="flex items-center space-x-5 ">
-            <li className="cursor-pointer hover:text-yellow-300">Movies</li>
-            <li className="cursor-pointer hover:text-yellow-300">TV Shows</li>
+            <li
+              className="cursor-pointer hover:text-yellow-300"
+              onClick={() => handleNevigate("Movies")}
+            >
+              Movies
+            </li>
+            <li
+              className="cursor-pointer hover:text-yellow-300"
+              onClick={() => handleNevigate("TV Shows")}
+            >
+              TV Shows
+            </li>
             <li className="cursor-pointer hover:text-yellow-300">
               <HiOutlineSearch size={20} onClick={openSearch} />
             </li>
@@ -68,10 +84,20 @@ const Header = () => {
       </section>
 
       {/* show only when menu state is true */}
-      <section className={`${menu ? "block" : "hidden"} `}>
+      <section className={`${menu ? "block" : "hidden"} md:hidden `}>
         <ul className="bg-black bg-opacity-40 text-white">
-          <li className="mx-5 py-3  text-xl font-medium">Movies</li>
-          <li className="mx-5 py-3 text-xl  font-medium">TV Shows</li>
+          <li
+            className="mx-7 cursor-pointer  py-2 text-xl font-medium hover:text-yellow-300"
+            onClick={() => handleNevigate("Movies")}
+          >
+            Movies
+          </li>
+          <li
+            className="mx-7 cursor-pointer py-2 pb-5  text-xl font-medium hover:text-yellow-300"
+            onClick={() => handleNevigate("TV Shows")}
+          >
+            TV Shows
+          </li>
         </ul>
       </section>
 
