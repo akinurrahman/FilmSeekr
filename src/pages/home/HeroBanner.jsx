@@ -15,8 +15,10 @@ const Banner = () => {
   useEffect(() => {
     if (data?.results?.length > 0) {
       const randomIndex =
-        Math.floor(Math.random() * data?.results?.length) || "";
-      const imagePath = data?.results?.[randomIndex]?.backdrop_path || "";
+        Math.floor(Math.random() * data?.results?.length) || 0;
+      const imagePath =
+        data?.results?.[randomIndex]?.backdrop_path ||
+        "/t5zCBSB5xMDKcDqe91qahCOUYVV.jpg";
       const imgUrl = generateTMDBImageUrl(imagePath);
       setBackground(imgUrl);
     }
@@ -58,10 +60,12 @@ const Banner = () => {
       <ContentWrapper>
         <div className="heroBannerContent relative mx-auto flex max-w-[800px] flex-col items-center text-center text-white">
           {/* Title */}
-          <span className="title text-3xl font-bold sm:text-4xl md:text-5xl xl:text-6xl">Welcome to FilmSeeKr</span>
+          <span className="title text-3xl font-bold sm:text-4xl md:text-5xl xl:text-6xl">
+            Welcome to FilmSeeKr
+          </span>
 
           {/* Subtitle */}
-          <span className="subTitle py-1 mb-8 leading-none">
+          <span className="subTitle mb-8 py-1 leading-none">
             Discover Countless Movies, TV Shows, and Intriguing Talents Awaiting
             Your Exploration
           </span>
