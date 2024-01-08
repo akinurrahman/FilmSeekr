@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import ContentWrapper from "../../components/ContentWrapper";
 import { useUpcommingMoviesQuery } from "../../api/fetchMovies";
 import { generateTMDBImageUrl } from "../../utility/generateTMDBImageUrl";
 
@@ -38,7 +37,7 @@ const Banner = () => {
   };
 
   return (
-    <div className="heroBanner relative flex h-[450px] w-full items-center bg-[#04152d] md:h-[700px]">
+    <section className="heroBanner relative flex h-[450px] w-full items-center bg-[#04152d] md:h-[700px]">
       {/* Display the background image */}
       {!isLoading && (
         <div className="backdrop-img absolute left-0 top-0 h-full w-full overflow-hidden opacity-50">
@@ -57,7 +56,7 @@ const Banner = () => {
       ></div>
 
       {/* Content */}
-      <ContentWrapper>
+      <section className="mx-auto w-full max-w-[1200px] px-5">
         <div className="heroBannerContent relative mx-auto flex max-w-[800px] flex-col items-center text-center text-white">
           {/* Title */}
           <span className="title text-3xl font-bold sm:text-4xl md:text-5xl xl:text-6xl">
@@ -88,8 +87,8 @@ const Banner = () => {
             </button>
           </div>
         </div>
-      </ContentWrapper>
-    </div>
+      </section>
+    </section>
   );
 };
 
