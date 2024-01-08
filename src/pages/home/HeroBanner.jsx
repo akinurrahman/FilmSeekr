@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useUpcommingMoviesQuery } from "../../api/fetchMovies";
 import { generateTMDBImageUrl } from "../../utility/generateTMDBImageUrl";
+import { useUpcommingQuery } from "../../api/fetchMovies";
 
 const Banner = () => {
   const [query, setQuery] = useState("");
   const [background, setBackground] = useState("");
   const navigate = useNavigate();
 
-  const { data, isLoading } = useUpcommingMoviesQuery("/movie/popular");
+  const { data, isLoading } = useUpcommingQuery("movie");
 
   // Randomly select an image from the fetched data
   useEffect(() => {

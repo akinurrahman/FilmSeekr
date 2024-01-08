@@ -6,11 +6,14 @@ export const fetchMovies = createApi({
   reducerPath: "TMDB",
   baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
   endpoints: (builder) => ({
-    upcommingMovies: builder.query({
-      query: (endpoint) => `${endpoint}?api_key=${API_KEY}`,
+    upcomming: builder.query({
+      query: (mediaType) => `/${mediaType}/popular?api_key=${API_KEY}`,
     }),
 
+    trending: builder.query({
+      query: (timeWindow) => `/trending/all/${timeWindow}?api_key=${API_KEY}`,
+    }),
     // other endpoints
   }),
 });
-export const { useUpcommingMoviesQuery } = fetchMovies;
+export const { useUpcommingQuery, useTrendingQuery } = fetchMovies;
