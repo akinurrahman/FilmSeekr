@@ -30,8 +30,8 @@ const Header = () => {
     setMenu(false);
   };
   return (
-    <header className="fixed z-10 w-full">
-      <section className="mx-auto  flex h-[60px]  items-center justify-between  bg-black bg-opacity-40 px-5 sm:px-8 md:px-12 lg:px-16">
+    <header className="fixed  z-10 w-full bg-black bg-opacity-40  ">
+      <section className=" mx-auto flex h-[60px]   w-full max-w-[1200px]  items-center justify-between  px-5 sm:px-8 md:px-12 lg:px-16">
         {/* Column 1 : Logo */}
         <section>
           <img
@@ -102,20 +102,22 @@ const Header = () => {
       </section>
 
       {/* Section visible when searchField state is true */}
-      <section className={`relative  ${searchField ? "block" : "hidden"}`}>
-        <input
-          type="text"
-          className="w-full  py-3 pl-6 pr-[60px] outline-none md:pl-14 lg:pl-16"
-          placeholder="Search for a movie or a tv show"
-          onChange={(e) => setQuery(e.target.value)}
-          onKeyDown={(e) => e.key === "Enter" && handleSearch(query)}
-          value={query}
-        />
-        <VscChromeClose
-          size={20}
-          className="absolute right-6 top-4 cursor-pointer sm:right-8 md:right-11   lg:right-16"
-          onClick={openSearch}
-        />
+      <section className={` bg-white ${searchField ? "block" : "hidden"}`}>
+        <div className=" relative mx-[23px] sm:mx-[30px] md:mx-[45px] lg:mx-[60px] xl:mx-[110px] 2xl:mx-[228px]">
+          <input
+            type="text"
+            className="w-full  py-3  outline-none "
+            placeholder="Search for a movie or a tv show"
+            onChange={(e) => setQuery(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && handleSearch(query)}
+            value={query}
+          />
+          <VscChromeClose
+            size={20}
+            className="absolute right-0 top-4 cursor-pointer "
+            onClick={openSearch}
+          />
+        </div>
       </section>
     </header>
   );
