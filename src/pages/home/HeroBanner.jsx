@@ -45,6 +45,7 @@ const Banner = () => {
             src={background}
             className="h-full w-full object-cover object-center"
             alt="Background"
+            loading="lazy"
           />
         </div>
       )}

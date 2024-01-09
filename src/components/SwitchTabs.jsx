@@ -16,7 +16,7 @@ const SwitchTabs = ({ data, onTabChange }) => {
             key={index}
             className={` ${
               activeTab === tab
-                ? "rounded-full bg-gradient-to-r from-yellow-200 to-yellow-500 px-5 py-1 font-medium"
+                ? "rounded-full bg-gradient-to-r from-yellow-200 to-yellow-500 px-5 py-1 "
                 : "px-5 py-1"
             }`}
             onClick={() => handleTabClick(tab)}
