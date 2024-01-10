@@ -6,9 +6,8 @@ import Test from './Test'
 const Home = () => {
   return (
     <div className='bg-[#04152d] text-white'>
-      {/* <HeroBanner/> */}
-      {/* <Trending/> */}
-      <Test/>
+      <HeroBanner/>
+      <Trending/>
     </div>
   )
 }

@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { generateTMDBImageUrl } from "../utility/generateTMDBImageUrl";
 import posterNotFound from "../assets/no-poster.png";
 import dayjs from "dayjs";
+import Img from "./LazyLoadImg";
 
 const Crousel = ({ data, loading }) => {
   return (
@@ -25,7 +26,9 @@ const Crousel = ({ data, loading }) => {
             {data?.map((currItem, index) => {
               const poster_path = currItem?.poster_path || "";
               const poster =
-                generateTMDBImageUrl(poster_path, "w342") || posterNotFound;
+                generateTMDBImageUrl(poster_path, "w500") || posterNotFound;
+              const placeholder =
+                generateTMDBImageUrl(poster_path, "w92") || posterNotFound;
 
               return (
                 <div
@@ -33,7 +36,11 @@ const Crousel = ({ data, loading }) => {
                   className="min-w-[42%]  cursor-pointer sm:min-w-[22%] lg:min-w-[17%]"
                 >
                   <div className="posterBlock ">
-                    <img src={poster} className="rounded-xl " />
+                    <Img
+                      src={poster}
+                      className="h-[206px] rounded-xl lg:h-[250px] xl:h-[297px] "
+                      placeholder={placeholder}
+                    />
                   </div>
                   <div>
                     <div className="line-clamp-1 pt-3 font-semibold lg:text-[18px]">
