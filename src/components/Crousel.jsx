@@ -9,7 +9,6 @@ import posterNotFound from "../assets/no-poster.png";
 import dayjs from "dayjs";
 
 const Crousel = ({ data, loading }) => {
-
   return (
     <section>
       <section className="relative mx-auto w-full max-w-[1200px]">
@@ -26,19 +25,15 @@ const Crousel = ({ data, loading }) => {
             {data?.map((currItem, index) => {
               const poster_path = currItem?.poster_path || "";
               const poster =
-                generateTMDBImageUrl(poster_path) || posterNotFound;
+                generateTMDBImageUrl(poster_path, "w342") || posterNotFound;
+
               return (
                 <div
                   key={currItem.id + index}
                   className="min-w-[42%]  cursor-pointer sm:min-w-[22%] lg:min-w-[17%]"
                 >
-                  <div className="poster ">
-                    <img
-                      src={poster}
-                      alt="poster"
-                      className="rounded-xl "
-                      loading="lazy"
-                    />
+                  <div className="posterBlock ">
+                    <img src={poster} className="rounded-xl " />
                   </div>
                   <div>
                     <div className="line-clamp-1 pt-3 font-semibold lg:text-[18px]">
@@ -53,9 +48,7 @@ const Crousel = ({ data, loading }) => {
             })}
           </div>
         ) : (
-          <section className="">
-           loading...
-          </section>
+          <section className="">loading...</section>
         )}
       </section>
     </section>
