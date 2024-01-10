@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { generateTMDBImageUrl } from "../../utility/generateTMDBImageUrl";
 import { useUpcommingQuery } from "../../api/fetchMovies";
+import Img from "../../components/LazyLoadImg";
 
 const Banner = () => {
   const [query, setQuery] = useState("");
   const [background, setBackground] = useState("");
+  const [placeholder, setPlaceholder] = useState("");
   const navigate = useNavigate();
 
   const { data, isLoading } = useUpcommingQuery("movie");
@@ -19,6 +21,10 @@ const Banner = () => {
         data?.results?.[randomIndex]?.backdrop_path ||
         "/t5zCBSB5xMDKcDqe91qahCOUYVV.jpg";
       const imgUrl = generateTMDBImageUrl(imagePath);
+      const lowQualityImg = generateTMDBImageUrl(imagePath, "w92");
+
+      // Set the URLs for the background and placeholder images
+      setPlaceholder(lowQualityImg);
       setBackground(imgUrl);
     }
   }, [data]);
@@ -41,11 +47,11 @@ const Banner = () => {
       {/* Display the background image */}
       {!isLoading && (
         <div className="backdrop-img absolute left-0 top-0 h-full w-full overflow-hidden opacity-50">
-          <img
+          <Img
             src={background}
-            className="h-full w-full object-cover object-center"
+            className="h-[450px] w-screen object-cover object-center md:h-[700px]"
             alt="Background"
-            loading="lazy"
+            placeholder={placeholder}
           />
         </div>
       )}
