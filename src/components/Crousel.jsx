@@ -8,7 +8,7 @@ import posterNotFound from "../assets/no-poster.png";
 import dayjs from "dayjs";
 import Img from "./LazyLoadImg";
 
-const Crousel = ({ data, loading }) => {
+const Crousel = ({ data, loading, error }) => {
   // Creating skeletons for loading state
   const skeletons = Array.from({ length: 20 }, (_, index) => (
     <div
@@ -23,6 +23,16 @@ const Crousel = ({ data, loading }) => {
     </div>
   ));
 
+  // Display error message if error
+  if (error) {
+    const errorMessage = error?.data?.status_message || "An error occurred";
+    return (
+      <div className="mx-auto h-20 max-w-[1200px] px-6 py-4 text-red-500">
+        Error: {errorMessage}
+      </div>
+    );
+  }
+
   return (
     <section>
       <section className="relative mx-auto w-full max-w-[1200px]">
@@ -32,13 +42,13 @@ const Crousel = ({ data, loading }) => {
         <BsFillArrowRightCircleFill className="absolute right-6 top-[44%] hidden cursor-pointer text-3xl text-[#b38e8e] md:block" />
 
         {/* Display data if not loading */}
-        {!loading ? (
+        {!loading && !error && data?.length > 0 ? (
           <div className="crouselItems flex w-full gap-3 overflow-auto p-4">
             {/* Mapping through data to display */}
             {data?.map((currItem, index) => {
               const poster_path = currItem?.poster_path || "";
               const poster =
-                generateTMDBImageUrl(poster_path) || posterNotFound;
+                generateTMDBImageUrl(poster_path, "w500") || posterNotFound;
               const placeholder =
                 generateTMDBImageUrl(poster_path, "w92") || posterNotFound;
 

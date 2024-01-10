@@ -5,11 +5,12 @@ import Crousel from "../../components/Crousel";
 
 const Trending = () => {
   const [timeWindow, setTimeWindow] = useState("day");
-  const { data, isLoading, isError } = useTrendingQuery(timeWindow);
+  const { data, isLoading, error } = useTrendingQuery(timeWindow);
 
   const onTabChange = (tab) => {
     setTimeWindow(tab === "Day" ? "day" : "week");
   };
+
   return (
     <section>
       <section className="mx-auto  flex w-full max-w-[1200px]   items-center justify-between px-5">
@@ -17,7 +18,7 @@ const Trending = () => {
 
         <SwitchTabs data={["Day", "Week"]} onTabChange={onTabChange} />
       </section>
-      <Crousel data={data?.results} loading={isLoading} />
+      <Crousel data={data?.results} loading={isLoading} error={error} />
     </section>
   );
 };
