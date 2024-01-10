@@ -5,7 +5,7 @@ import Crousel from "../../components/Crousel";
 
 const Trending = () => {
   const [timeWindow, setTimeWindow] = useState("day");
-  const { data, isLoading } = useTrendingQuery(timeWindow);
+  const { data, isLoading, isError } = useTrendingQuery(timeWindow);
 
   const onTabChange = (tab) => {
     setTimeWindow(tab === "Day" ? "day" : "week");
