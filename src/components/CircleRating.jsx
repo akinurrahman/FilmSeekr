@@ -4,7 +4,7 @@ import "react-circular-progressbar/dist/styles.css";
 
 const CircleRating = ({ rating }) => {
   return (
-    <div className="circleRating">
+    <div className="circleRating rounded-full bg-white p-[2px]">
       <CircularProgressbar
         value={rating}
         maxValue={10}
@@ -15,11 +15,6 @@ const CircleRating = ({ rating }) => {
       />
       <style jsx>
         {`
-          .circleRating {
-            background-color: white;
-            border-radius: 50%;
-            padding: 2px;
-          }
           .circleRating .CircularProgressbar-text {
             font-size: 34px;
             font-weight: 700;

@@ -14,7 +14,7 @@ const Crousel = ({ data, loading, error }) => {
   const skeletons = Array.from({ length: 20 }, (_, index) => (
     <div
       key={index}
-      className="min-w-[42%] animate-pulse cursor-pointer sm:min-w-[22%] lg:min-w-[17%]"
+      className="min-w-[47%] animate-pulse  cursor-pointer sm:min-w-[23%] md:min-w-[19%] xl:min-w-[16%]"
     >
       <div className="poster-block h-[206px] rounded-xl bg-blue-950 lg:h-[250px] xl:h-[297px]"></div>
       <div className="text-block">
@@ -83,17 +83,18 @@ const Crousel = ({ data, loading, error }) => {
             return (
               <div
                 key={currItem.id + index}
-                className="min-w-[42%] cursor-pointer sm:min-w-[22%] lg:min-w-[17%]"
+                className=" min-w-[47%] cursor-pointer  sm:min-w-[23%] md:min-w-[19%] xl:min-w-[16%]"
               >
                 <div className="posterBlock relative">
                   {/* Displaying images */}
                   <Img
                     src={poster}
-                    className="h-[206px] rounded-xl lg:h-[250px] xl:h-[297px]"
+                    className="h-[206px] w-full rounded-xl bg-blue-950  lg:h-[250px] xl:h-[297px]"
                     placeholder={placeholder}
                   />
                 </div>
-                <div className=" relative bottom-8 left-2 h-10 w-10 md:h-[50px] md:w-[50px] lg:left-3 ">
+                {/* Displaying circle ratings */}
+                <div className=" relative bottom-8 left-2 z-50 h-10 w-10 md:h-[50px] md:w-[50px] lg:left-3 ">
                   <CircleRating rating={currItem.vote_average.toFixed(1)} />
                 </div>
                 <div>
