@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { generateTMDBImageUrl } from "../../utility/generateTMDBImageUrl";
-import { useUpcommingQuery } from "../../api/fetchMovies";
+import { useTrendingQuery } from "../../api/fetchMovies";
 import Img from "../../components/LazyLoadImg";
 
 const Banner = () => {
@@ -10,7 +10,7 @@ const Banner = () => {
   const [placeholder, setPlaceholder] = useState("");
   const navigate = useNavigate();
 
-  const { data, isLoading } = useUpcommingQuery("movie");
+  const { data, isLoading } = useTrendingQuery("day");
 
   // Randomly select an image from the fetched data
   useEffect(() => {
@@ -20,7 +20,7 @@ const Banner = () => {
       const imagePath =
         data?.results?.[randomIndex]?.backdrop_path ||
         "/t5zCBSB5xMDKcDqe91qahCOUYVV.jpg";
-      const imgUrl = generateTMDBImageUrl(imagePath);
+      const imgUrl = generateTMDBImageUrl(imagePath, "w1280");
       const lowQualityImg = generateTMDBImageUrl(imagePath, "w92");
 
       // Set the URLs for the background and placeholder images
@@ -49,7 +49,7 @@ const Banner = () => {
         <div className="backdrop-img absolute left-0 top-0 h-full w-full overflow-hidden opacity-50">
           <Img
             src={background}
-            className="h-[450px] w-screen object-cover object-center md:h-[700px]"
+            className="h-[55%] w-screen object-cover object-center md:h-[700px]"
             alt="Background"
             placeholder={placeholder}
           />

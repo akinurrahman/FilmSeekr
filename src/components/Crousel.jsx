@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import {
   BsFillArrowLeftCircleFill,
   BsFillArrowRightCircleFill,
@@ -33,17 +33,45 @@ const Crousel = ({ data, loading, error }) => {
     );
   }
 
+  // Ref for accessing the carousel container
+  const crouselContainer = useRef();
+
+  // Function to handle carousel scrolling
+  const carouselScrollHandler = (direction) => {
+    const container = crouselContainer.current;
+    // Calculate the amount to scroll based on the specified direction
+    const scrollAmount =
+      direction === "left"
+        ? container.scrollLeft - container.offsetWidth
+        : container.scrollLeft + container.offsetWidth;
+
+    // Scroll to the calculated position with smooth animation
+    container.scrollTo({
+      left: scrollAmount,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <section>
       <section className="relative mx-auto w-full max-w-[1200px]">
         {/* Left arrow */}
-        <BsFillArrowLeftCircleFill className="absolute left-8 top-[44%] hidden cursor-pointer text-3xl text-[#b38e8e] md:block" />
+        <BsFillArrowLeftCircleFill
+          className="absolute left-8 top-[44%] z-10 hidden cursor-pointer text-3xl text-[#b38e8e] md:block"
+          onClick={() => carouselScrollHandler("left")}
+        />
         {/* Right arrow */}
-        <BsFillArrowRightCircleFill className="absolute right-6 top-[44%] hidden cursor-pointer text-3xl text-[#b38e8e] md:block" />
+        <BsFillArrowRightCircleFill
+          className="absolute right-6 top-[44%] z-10 hidden cursor-pointer text-3xl text-[#b38e8e] md:block"
+          onClick={() => carouselScrollHandler("right")}
+        />
 
         {/* Display data if not loading */}
         {!loading && !error && data?.length > 0 ? (
-          <div className="crouselItems flex w-full gap-3 overflow-auto p-4">
+          <div
+            className="crouselItems flex w-full gap-3 overflow-auto p-4"
+            ref={crouselContainer}
+          >
             {/* Mapping through data to display */}
             {data?.map((currItem, index) => {
               const poster_path = currItem?.poster_path || "";
