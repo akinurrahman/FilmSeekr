@@ -7,6 +7,7 @@ import { generateTMDBImageUrl } from "../utility/generateTMDBImageUrl";
 import posterNotFound from "../assets/no-poster.png";
 import dayjs from "dayjs";
 import Img from "./LazyLoadImg";
+import CircleRating from "./CircleRating";
 
 const Crousel = ({ data, loading, error }) => {
   // Creating skeletons for loading state
@@ -53,66 +54,67 @@ const Crousel = ({ data, loading, error }) => {
   };
 
   return (
-    <section>
-      <section className="relative mx-auto w-full max-w-[1200px]">
-        {/* Left arrow */}
-        <BsFillArrowLeftCircleFill
-          className="absolute left-8 top-[44%] z-10 hidden cursor-pointer text-3xl text-[#b38e8e] md:block"
-          onClick={() => carouselScrollHandler("left")}
-        />
-        {/* Right arrow */}
-        <BsFillArrowRightCircleFill
-          className="absolute right-6 top-[44%] z-10 hidden cursor-pointer text-3xl text-[#b38e8e] md:block"
-          onClick={() => carouselScrollHandler("right")}
-        />
+    <section className="relative mx-auto w-full max-w-[1200px]">
+      {/* Left arrow */}
+      <BsFillArrowLeftCircleFill
+        className="absolute left-8 top-[44%] z-10 hidden cursor-pointer text-3xl text-[#b38e8e] md:block"
+        onClick={() => carouselScrollHandler("left")}
+      />
+      {/* Right arrow */}
+      <BsFillArrowRightCircleFill
+        className="absolute right-6 top-[44%] z-10 hidden cursor-pointer text-3xl text-[#b38e8e] md:block"
+        onClick={() => carouselScrollHandler("right")}
+      />
 
-        {/* Display data if not loading */}
-        {!loading && !error && data?.length > 0 ? (
-          <div
-            className="crouselItems flex w-full gap-3 overflow-auto p-4"
-            ref={crouselContainer}
-          >
-            {/* Mapping through data to display */}
-            {data?.map((currItem, index) => {
-              const poster_path = currItem?.poster_path || "";
-              const poster =
-                generateTMDBImageUrl(poster_path, "w500") || posterNotFound;
-              const placeholder =
-                generateTMDBImageUrl(poster_path, "w92") || posterNotFound;
+      {/* Display data if not loading */}
+      {!loading && !error && data?.length > 0 ? (
+        <div
+          className="crouselItems flex w-full gap-3 overflow-auto p-4"
+          ref={crouselContainer}
+        >
+          {/* Mapping through data to display */}
+          {data?.map((currItem, index) => {
+            const poster_path = currItem?.poster_path || "";
+            const poster =
+              generateTMDBImageUrl(poster_path, "w500") || posterNotFound;
+            const placeholder =
+              generateTMDBImageUrl(poster_path, "w92") || posterNotFound;
 
-              return (
-                <div
-                  key={currItem.id + index}
-                  className="min-w-[42%] cursor-pointer sm:min-w-[22%] lg:min-w-[17%]"
-                >
-                  <div className="posterBlock">
-                    {/* Displaying images */}
-                    <Img
-                      src={poster}
-                      className="h-[206px] rounded-xl lg:h-[250px] xl:h-[297px]"
-                      placeholder={placeholder}
-                    />
+            return (
+              <div
+                key={currItem.id + index}
+                className="min-w-[42%] cursor-pointer sm:min-w-[22%] lg:min-w-[17%]"
+              >
+                <div className="posterBlock relative">
+                  {/* Displaying images */}
+                  <Img
+                    src={poster}
+                    className="h-[206px] rounded-xl lg:h-[250px] xl:h-[297px]"
+                    placeholder={placeholder}
+                  />
+                </div>
+                <div className=" relative bottom-8 left-2 h-10 w-10 md:h-[50px] md:w-[50px] lg:left-3 ">
+                  <CircleRating rating={currItem.vote_average.toFixed(1)} />
+                </div>
+                <div>
+                  {/* Displaying movie/TV show details */}
+                  <div className="mt-[-17px] line-clamp-1 font-semibold lg:text-[18px]">
+                    {currItem?.title || currItem?.name}
                   </div>
-                  <div>
-                    {/* Displaying movie/TV show details */}
-                    <div className="line-clamp-1 pt-1 font-semibold lg:text-[18px]">
-                      {currItem?.title || currItem?.name}
-                    </div>
-                    <div className="font-normal text-gray-400">
-                      {dayjs(currItem?.release_date).format("MMM DD YYYY")}
-                    </div>
+                  <div className="font-normal text-gray-400">
+                    {dayjs(currItem?.release_date).format("MMM DD YYYY")}
                   </div>
                 </div>
-              );
-            })}
-          </div>
-        ) : (
-          // Showing skeletons during loading
-          <section className="flex w-full cursor-pointer gap-3 overflow-auto p-4">
-            {skeletons}
-          </section>
-        )}
-      </section>
+              </div>
+            );
+          })}
+        </div>
+      ) : (
+        // Showing skeletons during loading
+        <section className="flex w-full cursor-pointer gap-3 overflow-auto p-4">
+          {skeletons}
+        </section>
+      )}
     </section>
   );
 };
