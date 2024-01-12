@@ -86,7 +86,7 @@ const Crousel = ({ data, loading, error }) => {
                 key={currItem.id + index}
                 className=" min-w-[47%] cursor-pointer  sm:min-w-[23%] md:min-w-[19%] xl:min-w-[16%]"
               >
-                <div className="posterBlock relative">
+                <div className="posterBlock relative w-full ">
                   {/* Displaying images */}
                   <Img
                     src={poster}

@@ -12,3 +12,8 @@
 .circleRating .CircularProgressbar-trail {
   stroke: transparent;
 }
+
+/* lazy load */
+.posterBlock span {
+  width: 100%;
+}
