@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* CircleRating.css */
+.circleRating .CircularProgressbar-text {
+  font-size: 34px;
+  font-weight: 700;
+  fill: black;
+}
+
+.circleRating .CircularProgressbar-trail {
+  stroke: transparent;
+}

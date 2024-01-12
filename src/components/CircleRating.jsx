@@ -13,19 +13,8 @@ const CircleRating = ({ rating }) => {
           pathColor: rating < 5 ? "red" : rating < 7 ? "orange" : "green",
         })}
       />
-      <style jsx>
-        {`
-          .circleRating .CircularProgressbar-text {
-            font-size: 34px;
-            font-weight: 700;
-            fill: black;
-          }
-          .circleRating .CircularProgressbar-trail {
-            stroke: transparent;
-          }
-        `}
-      </style>
-    </div>
+      
+     </div>
   );
 };
 

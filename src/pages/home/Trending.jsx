@@ -5,7 +5,7 @@ import Crousel from "../../components/Crousel";
 
 const Trending = () => {
   const [timeWindow, setTimeWindow] = useState("day");
-  const { data, isLoading, error } = useTrendingQuery(timeWindow);
+  const { data: trendingData, isLoading, error } = useTrendingQuery(timeWindow);
 
   const onTabChange = (tab) => {
     setTimeWindow(tab === "Day" ? "day" : "week");
@@ -18,7 +18,7 @@ const Trending = () => {
 
         <SwitchTabs data={["Day", "Week"]} onTabChange={onTabChange} />
       </section>
-      <Crousel data={data?.results} loading={isLoading} error={error} />
+      <Crousel data={trendingData?.results} loading={isLoading} error={error} />
     </section>
   );
 };

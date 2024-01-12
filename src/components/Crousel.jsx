@@ -8,6 +8,7 @@ import posterNotFound from "../assets/no-poster.png";
 import dayjs from "dayjs";
 import Img from "./LazyLoadImg";
 import CircleRating from "./CircleRating";
+import Genres from "./Genres";
 
 const Crousel = ({ data, loading, error }) => {
   // Creating skeletons for loading state
@@ -97,6 +98,10 @@ const Crousel = ({ data, loading, error }) => {
                 <div className=" relative bottom-8 left-2 z-50 h-10 w-10 md:h-[50px] md:w-[50px] lg:left-3 ">
                   <CircleRating rating={currItem.vote_average.toFixed(1)} />
                 </div>
+                <div className=" relative bottom-8 right-0 z-50 ">
+                  <Genres data={currItem.genre_ids.slice(0, 2)} />
+                </div>
+
                 <div>
                   {/* Displaying movie/TV show details */}
                   <div className="mt-[-17px] line-clamp-1 font-semibold lg:text-[18px]">
