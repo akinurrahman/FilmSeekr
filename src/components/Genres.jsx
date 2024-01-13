@@ -16,7 +16,7 @@ const Genres = ({ data }) => {
 
   return (
     <div
-      className={`relative bottom-[81px] float-end hidden w-[60%] justify-end gap-[2px] pr-2 text-[12px] lg:flex`}
+      className={`  relative bottom-[81px] float-end hidden w-[60%] justify-end gap-[2px] pr-2 text-[12px] lg:flex `}
     >
       {/* Mapping through filtered genres and rendering them */}
       {filteredGenres?.map((genre) => (

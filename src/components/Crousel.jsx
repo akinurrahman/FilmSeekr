@@ -19,7 +19,7 @@ const Crousel = ({ data, loading, error }) => {
     >
       <div className="poster-block h-[206px] rounded-xl bg-blue-950 lg:h-[250px] xl:h-[297px]"></div>
       <div className="text-block">
-        <div className="title my-3 h-4 w-full bg-blue-950"></div>
+        <div className="title my-1 mt-7 h-4 w-full bg-blue-950"></div>
         <div className="time h-4 w-full bg-blue-950"></div>
       </div>
     </div>
@@ -86,26 +86,24 @@ const Crousel = ({ data, loading, error }) => {
                 key={currItem.id + index}
                 className=" min-w-[47%] cursor-pointer  sm:min-w-[23%] md:min-w-[19%] xl:min-w-[16%]"
               >
-                <div className="posterBlock relative w-full ">
+                <div className="posterBlock relative w-full  ">
                   {/* Displaying images */}
                   <Img
                     src={poster}
-                    className="h-[206px] w-full rounded-xl bg-blue-950  lg:h-[250px] xl:h-[297px]"
+                    className="h-[206px] w-full rounded-xl bg-blue-950  lg:h-[250px] xl:h-[297px] "
                     placeholder={placeholder}
                   />
                 </div>
-                {/* Displaying circle ratings */}
-                <div className=" relative bottom-8 left-2 z-50 h-10 w-10 md:h-[50px] md:w-[50px] lg:left-3 ">
-                  <CircleRating rating={currItem.vote_average.toFixed(1)} />
-                </div>
+                {/* Displaying circle ratings and genres */}
+                <CircleRating rating={currItem.vote_average.toFixed(1)} />
                 <Genres data={currItem.genre_ids.slice(0, 2)} />
 
-                <div>
-                  {/* Displaying movie/TV show details */}
-                  <div className="mt-[-17px] line-clamp-1 font-semibold lg:text-[18px]">
+                {/* Displaying movie/TV show details */}
+                <div className="textBlock ">
+                  <div className="  line-clamp-1  w-full font-semibold lg:text-[18px]">
                     {currItem?.title || currItem?.name}
                   </div>
-                  <div className="font-normal text-gray-400">
+                  <div className=" line-clamp-1  w-full font-normal text-gray-400">
                     {dayjs(currItem?.release_date).format("MMM DD YYYY")}
                   </div>
                 </div>
