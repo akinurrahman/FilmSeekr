@@ -13,7 +13,7 @@ import { skeletons } from "./Skeleton";
 import { useNavigate } from "react-router-dom";
 
 const Crousel = ({ data, loading, error }) => {
-const navigate = useNavigate()
+  const navigate = useNavigate();
   // Display error message if error
   if (error) {
     const errorMessage = error?.data?.status_message || "An error occurred";
@@ -74,7 +74,9 @@ const navigate = useNavigate()
               <div
                 key={currItem.id + index}
                 className=" min-w-[47%] cursor-pointer  sm:min-w-[23%] md:min-w-[19%] xl:min-w-[16%]"
-                onClick={()=> navigate(`/${currItem.media_type}/${currItem.id}`) }
+                onClick={() =>
+                  navigate(`/${currItem.media_type}/${currItem.id}`)
+                }
               >
                 <div className="posterBlock relative w-full  ">
                   {/* Displaying images */}

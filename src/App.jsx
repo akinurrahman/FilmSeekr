@@ -7,15 +7,15 @@ import Explore from "./pages/explore/Explore";
 import PageNotFound from "./pages/Not Found/PageNotFound";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
-import { useGetMovieGenresQuery, useGetTVGenresQuery } from "./api/fetchMovies";
+import { useGetGenresQuery } from "./api/fetchMovies";
 import { useDispatch } from "react-redux";
 import { setAllGenres } from "./api/slices/genresSlice";
 import Testing from "./Testing";
 
 const App = () => {
   const dispatch = useDispatch();
-  const { data: movieGenres } = useGetMovieGenresQuery();
-  const { data: tvGenres } = useGetTVGenresQuery();
+  const { data: movieGenres } = useGetGenresQuery("movie");
+  const { data: tvGenres } = useGetGenresQuery("tv");
 
   useEffect(() => {
     if (movieGenres && tvGenres) {
