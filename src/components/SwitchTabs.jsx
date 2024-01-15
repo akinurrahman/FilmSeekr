@@ -1,4 +1,4 @@
-// SwitchTabs.jsx
+
 import React, { useState } from "react";
 
 const SwitchTabs = ({ data, onTabChange }) => {
@@ -19,7 +19,7 @@ const SwitchTabs = ({ data, onTabChange }) => {
               cursor-pointer rounded-full px-5 py-1
               ${
                 index === activeTab
-                  ? "bg-gradient-to-r from-yellow-200 to-yellow-500 text-[#64647f]"
+                  ? "bg-gradient-to-r from-yellow-200 to-yellow-500 text-[#04152d]"
                   : "bg-white text-black"
               }
             `}

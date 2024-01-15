@@ -12,7 +12,7 @@ import Genres from "./Genres";
 import { skeletons } from "./Skeleton";
 import { useNavigate } from "react-router-dom";
 
-const Crousel = ({ data, loading, error }) => {
+const Crousel = ({ data, loading, error, mediaType }) => {
   const navigate = useNavigate();
   // Display error message if error
   if (error) {
@@ -75,7 +75,9 @@ const Crousel = ({ data, loading, error }) => {
                 key={currItem.id + index}
                 className=" min-w-[47%] cursor-pointer  sm:min-w-[23%] md:min-w-[19%] xl:min-w-[16%]"
                 onClick={() =>
-                  navigate(`/${currItem.media_type}/${currItem.id}`)
+                  navigate(
+                    `/${currItem.media_type || mediaType}/${currItem.id}`,
+                  )
                 }
               >
                 <div className="posterBlock relative w-full  ">

@@ -18,7 +18,7 @@ const Popular = () => {
 
         <SwitchTabs data={["Movie", "TV Show"]} onTabChange={onTabChange}  />
       </section>
-      <Crousel data={data?.results} loading={isLoading} error={error} />
+      <Crousel data={data?.results} loading={isLoading} error={error} mediaType={mediaType} />
     </section>
   );
 };
