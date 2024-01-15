@@ -16,12 +16,12 @@ const Genres = ({ data }) => {
 
   return (
     <div
-      className={`  relative bottom-[81px] float-end hidden w-[60%] justify-end gap-[2px] pr-2 text-[12px] lg:flex `}
+      className={`  relative bottom-[81px] float-end hidden w-[60%] justify-end gap-[2px] pr-2 text-[12px] md:flex `}
     >
       {/* Mapping through filtered genres and rendering them */}
-      {filteredGenres?.map((genre) => (
+      {filteredGenres?.map((genre, index) => (
         <span
-          key={genre.name}
+          key={genre.name + index}
           className="line-clamp-1 w-1/2 rounded-sm bg-pink-600 pl-1"
         >
           {genre.name}

@@ -19,7 +19,7 @@ const Crousel = ({ data, loading, error }) => {
     >
       <div className="poster-block h-[206px] rounded-xl bg-blue-950 lg:h-[250px] xl:h-[297px]"></div>
       <div className="text-block">
-        <div className="title my-1 mt-7 h-4 w-full bg-blue-950"></div>
+        <div className="title my-2 mt-6 h-4 w-full bg-blue-950"></div>
         <div className="time h-4 w-full bg-blue-950"></div>
       </div>
     </div>
@@ -58,12 +58,12 @@ const Crousel = ({ data, loading, error }) => {
     <section className="relative mx-auto w-full max-w-[1200px]">
       {/* Left arrow */}
       <BsFillArrowLeftCircleFill
-        className="absolute left-8 top-[44%] z-10 hidden cursor-pointer text-3xl text-[#b38e8e] md:block"
+        className="absolute left-8 top-[35%] z-10 hidden cursor-pointer text-3xl text-[#b38e8e] md:block"
         onClick={() => carouselScrollHandler("left")}
       />
       {/* Right arrow */}
       <BsFillArrowRightCircleFill
-        className="absolute right-6 top-[44%] z-10 hidden cursor-pointer text-3xl text-[#b38e8e] md:block"
+        className="absolute right-6 top-[35%] z-10 hidden cursor-pointer text-3xl text-[#b38e8e] md:block"
         onClick={() => carouselScrollHandler("right")}
       />
 

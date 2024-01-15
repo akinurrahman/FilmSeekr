@@ -43,13 +43,13 @@ const Banner = () => {
   };
 
   return (
-    <section className="heroBanner relative flex h-[450px] w-full items-center bg-[#04152d] md:h-[700px]">
+    <section className="heroBanner relative flex h-[400px] w-full items-center bg-[#04152d] md:h-[700px]">
       {/* Display the background image */}
       {!isLoading && (
         <div className="backdrop-img absolute left-0 top-0 h-full w-full overflow-hidden opacity-50">
           <Img
             src={background}
-            className="h-[55%] w-screen object-cover object-center md:h-[700px]"
+            className=" w-screen object-cover object-center h-full"
             alt="Background"
             placeholder={placeholder}
           />
