@@ -13,6 +13,7 @@ import { skeletons } from "./Skeleton";
 import { useNavigate } from "react-router-dom";
 
 const Crousel = ({ data, loading, error, mediaType }) => {
+  
   const navigate = useNavigate();
   // Display error message if error
   if (error) {

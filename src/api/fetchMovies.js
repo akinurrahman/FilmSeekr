@@ -18,9 +18,16 @@ export const fetchMovies = createApi({
     getPopular: builder.query({
       query: (mediaType) => `${mediaType}/popular?api_key=${API_KEY}`,
     }),
+    
+    getTopRated: builder.query({
+      query: (mediaType) => `${mediaType}/top_rated?api_key=${API_KEY}`,
+    }),
 
-    // other endpoints
   }),
 });
-export const { useTrendingQuery, useGetGenresQuery, useGetPopularQuery } =
-  fetchMovies;
+export const {
+  useTrendingQuery,
+  useGetGenresQuery,
+  useGetPopularQuery,
+  useGetTopRatedQuery,
+} = fetchMovies;
