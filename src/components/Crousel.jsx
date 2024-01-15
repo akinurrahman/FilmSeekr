@@ -9,22 +9,11 @@ import dayjs from "dayjs";
 import Img from "./LazyLoadImg";
 import CircleRating from "./CircleRating";
 import Genres from "./Genres";
+import { skeletons } from "./Skeleton";
+import { useNavigate } from "react-router-dom";
 
 const Crousel = ({ data, loading, error }) => {
-  // Creating skeletons for loading state
-  const skeletons = Array.from({ length: 20 }, (_, index) => (
-    <div
-      key={index}
-      className="min-w-[47%] animate-pulse  cursor-pointer sm:min-w-[23%] md:min-w-[19%] xl:min-w-[16%]"
-    >
-      <div className="poster-block h-[206px] rounded-xl bg-blue-950 lg:h-[250px] xl:h-[297px]"></div>
-      <div className="text-block">
-        <div className="title my-2 mt-6 h-4 w-full bg-blue-950"></div>
-        <div className="time h-4 w-full bg-blue-950"></div>
-      </div>
-    </div>
-  ));
-
+const navigate = useNavigate()
   // Display error message if error
   if (error) {
     const errorMessage = error?.data?.status_message || "An error occurred";
@@ -85,6 +74,7 @@ const Crousel = ({ data, loading, error }) => {
               <div
                 key={currItem.id + index}
                 className=" min-w-[47%] cursor-pointer  sm:min-w-[23%] md:min-w-[19%] xl:min-w-[16%]"
+                onClick={()=> navigate(`/${currItem.media_type}/${currItem.id}`) }
               >
                 <div className="posterBlock relative w-full  ">
                   {/* Displaying images */}
