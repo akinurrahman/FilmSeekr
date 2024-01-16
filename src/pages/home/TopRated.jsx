@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import SwitchTabs from "../../components/SwitchTabs";
 import Crousel from "../../components/Crousel";
-import { useGetPopularQuery, useGetTopRatedQuery } from "../../api/fetchMovies";
+import { useGetTopRatedQuery } from "../../api/fetchMovies";
 
 const TopRated = () => {
   const [mediaType, setMediaType] = useState("movie");
@@ -14,7 +14,7 @@ const TopRated = () => {
   return (
     <section>
       <section className="mx-auto  flex w-full max-w-[1200px]   items-center justify-between px-5">
-        <h2 className="text-[30px] font-[550]">Top Rated</h2>
+        <h2 className="text-[25px] font-[550]">Top Rated</h2>
 
         <SwitchTabs data={["Movie", "TV Show"]} onTabChange={onTabChange}  />
       </section>

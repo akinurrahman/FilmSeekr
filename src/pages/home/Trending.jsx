@@ -14,7 +14,7 @@ const Trending = () => {
   return (
     <section>
       <section className="mx-auto  flex w-full max-w-[1200px]   items-center justify-between px-5">
-        <h2 className="text-[30px] font-[550]">Trending</h2>
+        <h2 className="text-[25px] font-[550]">Trending</h2>
 
         <SwitchTabs data={["Day", "Week"]} onTabChange={onTabChange} />
       </section>

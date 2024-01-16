@@ -14,7 +14,7 @@ const Popular = () => {
   return (
     <section>
       <section className="mx-auto  flex w-full max-w-[1200px]   items-center justify-between px-5">
-        <h2 className="text-[30px] font-[550]">Popular</h2>
+        <h2 className="text-[25px] font-[550]">Popular</h2>
 
         <SwitchTabs data={["Movie", "TV Show"]} onTabChange={onTabChange}  />
       </section>

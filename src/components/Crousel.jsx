@@ -13,7 +13,6 @@ import { skeletons } from "./Skeleton";
 import { useNavigate } from "react-router-dom";
 
 const Crousel = ({ data, loading, error, mediaType }) => {
-  
   const navigate = useNavigate();
   // Display error message if error
   if (error) {
@@ -65,7 +64,7 @@ const Crousel = ({ data, loading, error, mediaType }) => {
         >
           {/* Mapping through data to display */}
           {data?.map((currItem, index) => {
-            const poster_path = currItem?.poster_path || "";
+            const poster_path = currItem?.poster_path || posterNotFound;
             const poster =
               generateTMDBImageUrl(poster_path, "w500") || posterNotFound;
             const placeholder =
@@ -73,7 +72,7 @@ const Crousel = ({ data, loading, error, mediaType }) => {
 
             return (
               <div
-                key={currItem.id + index}
+                key={currItem.id}
                 className=" min-w-[47%] cursor-pointer  sm:min-w-[23%] md:min-w-[19%] xl:min-w-[16%]"
                 onClick={() =>
                   navigate(
