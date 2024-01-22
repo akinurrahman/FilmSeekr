@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { generateTMDBImageUrl } from "../../utility/generateTMDBImageUrl";
-import { useTrendingQuery } from "../../api/fetchMovies";
+import { useFetchTBDBQuery } from "../../api/fetchMovies";
 import Img from "../../components/LazyLoadImg";
 
 const Banner = () => {
@@ -10,7 +10,7 @@ const Banner = () => {
   const [placeholder, setPlaceholder] = useState("");
   const navigate = useNavigate();
 
-  const { data, isLoading } = useTrendingQuery("day");
+  const { data, isLoading } = useFetchTBDBQuery("trending/all/day");
 
   // Randomly select an image from the fetched data
   useEffect(() => {

@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  background: #04152d;
+  color: white;
+}
 /* CircleRating.css */
 .circleRating .CircularProgressbar-text {
   font-size: 34px;

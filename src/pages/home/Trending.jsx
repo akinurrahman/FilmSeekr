@@ -1,11 +1,15 @@
 import React, { useState } from "react";
-import { useTrendingQuery } from "../../api/fetchMovies";
+import { useFetchTBDBQuery } from "../../api/fetchMovies";
 import SwitchTabs from "../../components/SwitchTabs";
 import Crousel from "../../components/Crousel";
 
 const Trending = () => {
   const [timeWindow, setTimeWindow] = useState("day");
-  const { data: trendingData, isLoading, error } = useTrendingQuery(timeWindow);
+  const {
+    data: trendingData,
+    isLoading,
+    error,
+  } = useFetchTBDBQuery(`trending/all/${timeWindow}`);
 
   const onTabChange = (tab) => {
     setTimeWindow(tab === "Day" ? "day" : "week");

@@ -63,7 +63,7 @@ const Crousel = ({ data, loading, error, mediaType }) => {
           ref={crouselContainer}
         >
           {/* Mapping through data to display */}
-          {data?.map((currItem, index) => {
+          {data?.map((currItem) => {
             const poster_path = currItem?.poster_path || posterNotFound;
             const poster =
               generateTMDBImageUrl(poster_path, "w500") || posterNotFound;

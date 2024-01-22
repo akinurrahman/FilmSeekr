@@ -7,7 +7,7 @@ import TopRated from './TopRated'
 
 const Home = () => {
   return (
-    <div className='bg-[#04152d] text-white'>
+    <div >
       <HeroBanner/>
       <Trending/>
       <Popular/>
