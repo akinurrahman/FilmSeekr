@@ -3,15 +3,17 @@ import Crousel from "../../components/Crousel";
 import { useFetchTBDBQuery } from "../../api/fetchMovies";
 import { useParams } from "react-router-dom";
 
-const Recommendations = () => {
+const Similer = () => {
   const { mediaType, id } = useParams();
   const { data, isLoading, error } = useFetchTBDBQuery(
-    `${mediaType}/${id}/recommendations`,
+    `${mediaType}/${id}/similar`,
   );
   return (
     <section>
       <section className="mx-auto  flex w-full max-w-[1200px]   items-center justify-between px-5">
-        <h2 className="text-[25px] font-[550]">Recommendations</h2>
+        <h2 className="text-[25px] font-[550]">
+          Similer {mediaType === "movie" ? "Movies" : "TV Shows"}
+        </h2>
       </section>
       <Crousel
         data={data?.results}
@@ -23,4 +25,4 @@ const Recommendations = () => {
   );
 };
 
-export default Recommendations;
+export default Similer;
