@@ -21,12 +21,12 @@ const Banner = () => {
   const runtime = toHoursAndMinutes(data?.runtime) || "";
   return (
     <section className="mx-auto min-h-[700px] max-w-[1200px] pt-[90px] md:flex ">
-      <div className=" px-[22px] ">
-        <Img src={poster} className={"w-full rounded-2xl"} />
+      <div className="  px-[22px] md:w-1/2">
+        <Img src={poster} className={"w-full rounded-2xl md:w-[90%] lg:w-[60%]"} />
       </div>
 
       {/* Text block */}
-      <div className="details__block mt-5 space-y-2 px-[22px]">
+      <div className="details__block mt-5 space-y-2 px-[22px] md:w-1/2">
         <h2 className="  text-3xl">{title}</h2>
         <p className="italic leading-none text-gray-400 ">{tagline}</p>
         <div className="flex items-center">
@@ -42,18 +42,19 @@ const Banner = () => {
         <h3 className="text-2xl font-semibold leading-none">Overview</h3>
         <p>{overview}</p>
 
+        {/* ----------Status, Release Date, Runtime------------------ */}
         <div className="flex space-x-7">
-          <div className="flex flex-col sm:flex-row sm:gap-2">
+          <div className="flex flex-col  sm:flex-row md:flex-col">
             <span className="text-lg font-semibold">Status:</span>
             <span className="font-semibold text-gray-400">{status}</span>
           </div>
-          <div className="flex flex-col sm:flex-row sm:gap-2">
+          <div className="flex flex-col  sm:flex-row md:flex-col">
             <span className="text-lg font-semibold">Release Date:</span>
             <span className="font-semibold text-gray-400">
               {dayjs(releaseDate).format("MMM D, YYYY")}
             </span>
           </div>
-          <div className="flex flex-col sm:flex-row sm:gap-2">
+          <div className="flex flex-col  sm:flex-row md:flex-col">
             <span className="text-lg font-semibold">Runtime:</span>
             <span className="font-semibold text-gray-400">{runtime}</span>
           </div>
