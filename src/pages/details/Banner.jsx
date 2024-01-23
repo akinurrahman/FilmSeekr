@@ -14,18 +14,22 @@ const Banner = () => {
   const status = data?.status || "";
   const releaseDate = data?.release_date || "";
   const genres = data?.genres || [];
-  console.log(genres);
+  const rating = data?.vote_average || "";
+  const tagline = data?.tagline || "";
   return (
-    <section className="mx-auto min-h-[700px] max-w-[1200px] md:flex">
-      <div className=" px-[22px] pt-[90px] ">
+    <section className="mx-auto min-h-[700px] max-w-[1200px] pt-[90px] md:flex ">
+      <div className=" px-[22px] ">
         <Img src={poster} className={"w-full rounded-2xl"} />
       </div>
+
+      {/* Text block */}
       <div className="details__block mt-5 px-[22px]">
-        <h2 className="text-3xl  mb-2">{title}</h2>
-        <div className=" flex items-center ">
+        <h2 className="mb-2  text-3xl">{title}</h2>
+        <p className="leading-none italic text-gray-400 mb-2">{tagline}</p>
+        <div className="flex items-center">
           {genres?.map((g, index) => (
             <span
-              className="mx-[2px] rounded-md bg-pink-700 px-1 text-sm"
+              className="mx-[2px] rounded-md bg-pink-700 px-2 text-sm"
               key={index}
             >
               {g.name}
