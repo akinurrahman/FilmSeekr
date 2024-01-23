@@ -4,6 +4,8 @@ import { useFetchTBDBQuery } from "../../api/fetchMovies";
 import { generateTMDBImageUrl } from "../../utility/generateTMDBImageUrl";
 import noPoster from "../../assets/no-poster.png";
 import Img from "../../components/LazyLoadImg";
+import dayjs from "dayjs";
+import { toHoursAndMinutes } from "../../utility/toHoursAndMinutes";
 
 const Banner = () => {
   const { mediaType, id } = useParams();
@@ -16,6 +18,7 @@ const Banner = () => {
   const genres = data?.genres || [];
   const rating = data?.vote_average || "";
   const tagline = data?.tagline || "";
+  const runtime = toHoursAndMinutes(data?.runtime) || "";
   return (
     <section className="mx-auto min-h-[700px] max-w-[1200px] pt-[90px] md:flex ">
       <div className=" px-[22px] ">
@@ -38,6 +41,23 @@ const Banner = () => {
         </div>
         <h3 className="text-2xl font-semibold leading-none">Overview</h3>
         <p>{overview}</p>
+
+        <div className="flex space-x-7">
+          <div className="flex flex-col sm:flex-row sm:gap-2">
+            <span className="text-lg font-semibold">Status:</span>
+            <span className="font-semibold text-gray-400">{status}</span>
+          </div>
+          <div className="flex flex-col sm:flex-row sm:gap-2">
+            <span className="text-lg font-semibold">Release Date:</span>
+            <span className="font-semibold text-gray-400">
+              {dayjs(releaseDate).format("MMM D, YYYY")}
+            </span>
+          </div>
+          <div className="flex flex-col sm:flex-row sm:gap-2">
+            <span className="text-lg font-semibold">Runtime:</span>
+            <span className="font-semibold text-gray-400">{runtime}</span>
+          </div>
+        </div>
       </div>
     </section>
   );
