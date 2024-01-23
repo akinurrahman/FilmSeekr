@@ -23,9 +23,9 @@ const Banner = () => {
       </div>
 
       {/* Text block */}
-      <div className="details__block mt-5 px-[22px]">
-        <h2 className="mb-2  text-3xl">{title}</h2>
-        <p className="leading-none italic text-gray-400 mb-2">{tagline}</p>
+      <div className="details__block mt-5 space-y-2 px-[22px]">
+        <h2 className="  text-3xl">{title}</h2>
+        <p className="italic leading-none text-gray-400 ">{tagline}</p>
         <div className="flex items-center">
           {genres?.map((g, index) => (
             <span
@@ -36,6 +36,8 @@ const Banner = () => {
             </span>
           ))}
         </div>
+        <h3 className="text-2xl font-semibold leading-none">Overview</h3>
+        <p>{overview}</p>
       </div>
     </section>
   );
