@@ -12,13 +12,22 @@ const SearchResults = () => {
   const navigate = useNavigate();
   const { query } = useParams();
   const { data, isLoading, error } = useGetSearchQuery(
-    `search/multi?query=${query}&page=${1}`,
+    `search/smulti?query=${query}&page=${1}`,
   );
 
   if (isLoading) {
     return (
       <div className="mx-auto grid max-w-[1100px] grid-cols-2 gap-5 px-4 pt-[75px] sm:grid-cols-4 md:grid-cols-5">
         {skeletons}
+      </div>
+    );
+  }
+  // Display error message if error
+  if (error) {
+    const errorMessage = error?.data?.status_message || "An error occurred";
+    return (
+      <div className="mx-auto h-20 max-w-[1200px] px-6  py-16 text-red-500  ">
+        Error: {errorMessage}
       </div>
     );
   }
