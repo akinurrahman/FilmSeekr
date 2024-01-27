@@ -1,17 +1,27 @@
 import React from "react";
 import { useGetSearchQuery } from "../../api/fetchMovies";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Img from "../../components/LazyLoadImg";
 import posterNotFound from "../../assets/no-poster.png";
 
 import dayjs from "dayjs";
 import { generateTMDBImageUrl } from "../../utility/generateTMDBImageUrl";
+import { skeletons } from "../../components/Skeleton";
 
 const SearchResults = () => {
+  const navigate = useNavigate();
   const { query } = useParams();
   const { data, isLoading, error } = useGetSearchQuery(
     `search/multi?query=${query}&page=${1}`,
   );
+
+  if (isLoading) {
+    return (
+      <div className="mx-auto grid max-w-[1100px] grid-cols-2 gap-5 px-4 pt-[75px] sm:grid-cols-4 md:grid-cols-5">
+        {skeletons}
+      </div>
+    );
+  }
   return (
     <div className="mx-auto grid max-w-[1100px] grid-cols-2 gap-5 px-4 pt-[75px] sm:grid-cols-4 md:grid-cols-5">
       {data?.results?.map((currItem) => {
