@@ -1,15 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useGetSearchQuery } from "../../api/fetchMovies";
-import { useNavigate, useParams } from "react-router-dom";
-import Img from "../../components/LazyLoadImg";
-import posterNotFound from "../../assets/no-poster.png";
-import dayjs from "dayjs";
-import { generateTMDBImageUrl } from "../../utility/generateTMDBImageUrl";
+import { useParams } from "react-router-dom";
 import { skeletons } from "../../components/Skeleton";
 import InfiniteScroll from "react-infinite-scroll-component";
+import MediaCard from "../../components/MediaCard";
 
 const SearchResults = () => {
-  const navigate = useNavigate();
   const { query } = useParams();
   const [page, setPage] = useState(1);
   const [videos, setVideos] = useState([]);
@@ -52,41 +48,7 @@ const SearchResults = () => {
           className="mx-auto grid max-w-[1100px] grid-cols-2 gap-5 px-4 pt-[75px] sm:grid-cols-4 md:grid-cols-5"
         >
           {videos.map((currItem) => {
-            const poster_path = currItem?.poster_path || posterNotFound;
-            const poster = currItem?.poster_path
-              ? generateTMDBImageUrl(poster_path, "w500")
-              : posterNotFound;
-            const placeholder =
-              generateTMDBImageUrl(poster_path, "w92") || posterNotFound;
-
-            return (
-              <div
-                key={currItem.id}
-                className="min-w-[47%] cursor-pointer sm:min-w-[23%] md:min-w-[19%] xl:min-w-[16%]"
-                onClick={() =>
-                  navigate(`/${currItem.media_type}/${currItem.id}`)
-                }
-              >
-                <div className="posterBlock relative w-full">
-                  {/* Displaying images */}
-                  <Img
-                    src={poster}
-                    className="h-[206px] w-full rounded-xl bg-blue-950  lg:h-[250px] xl:h-[297px]"
-                    placeholder={placeholder}
-                  />
-                </div>
-
-                {/* Displaying movie/TV show details */}
-                <div className="textBlock ">
-                  <div className="line-clamp-1 w-full font-semibold lg:text-[18px]">
-                    {currItem?.title || currItem?.name}
-                  </div>
-                  <div className="line-clamp-1 w-full font-normal text-gray-400">
-                    {dayjs(currItem?.release_date).format("MMM DD YYYY")}
-                  </div>
-                </div>
-              </div>
-            );
+            return <MediaCard key={currItem.id} currItem={currItem} />;
           })}
         </InfiniteScroll>
       )}
