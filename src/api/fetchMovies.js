@@ -14,6 +14,9 @@ export const fetchMovies = createApi({
     fetchTBDB: builder.query({
       query: (parameters) => `${parameters}?api_key=${API_KEY}`,
     }),
+    getSearch: builder.query({
+      query: (parameters) => `${parameters}&api_key=${API_KEY}`,
+    }),
   }),
 });
-export const { useGetGenresQuery, useFetchTBDBQuery } = fetchMovies;
+export const { useGetGenresQuery, useFetchTBDBQuery, useGetSearchQuery } = fetchMovies;
