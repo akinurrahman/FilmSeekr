@@ -106,7 +106,7 @@ const Header = () => {
         <div className=" relative mx-[23px] sm:mx-[30px] md:mx-[45px] lg:mx-[60px] xl:mx-[110px] 2xl:mx-[228px]">
           <input
             type="text"
-            className="w-full  py-3  outline-none "
+            className="w-full  py-3  outline-none text-black"
             placeholder="Search for a movie or a tv show"
             onChange={(e) => setQuery(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && handleSearch(query)}
@@ -114,7 +114,7 @@ const Header = () => {
           />
           <VscChromeClose
             size={20}
-            className="absolute right-0 top-4 cursor-pointer "
+            className="absolute right-0 top-4 cursor-pointer text-black"
             onClick={openSearch}
           />
         </div>
