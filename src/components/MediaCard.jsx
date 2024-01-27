@@ -13,10 +13,9 @@ const MediaCard = ({ currItem }) => {
     ? generateTMDBImageUrl(poster_path, "w500")
     : posterNotFound;
   const placeholder =
-    generateTMDBImageUrl(poster_path, "w92") || posterNotFound;
+    currItem?.poster_path && generateTMDBImageUrl(poster_path, "w92");
   return (
     <div
-      key={currItem.id}
       className="min-w-[47%] cursor-pointer sm:min-w-[23%] md:min-w-[19%] xl:min-w-[16%]"
       onClick={() => navigate(`/${currItem.media_type}/${currItem.id}`)}
     >
