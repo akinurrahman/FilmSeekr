@@ -2,14 +2,22 @@ import React, { useState } from "react";
 import { useFetchTBDBQuery } from "../../api/fetchMovies";
 import SwitchTabs from "../../components/SwitchTabs";
 import Crousel from "../../components/Crousel";
+import { fetchMoviesAndShows } from "../../api/api";
+import { useQuery } from "@tanstack/react-query";
 
 const Trending = () => {
   const [timeWindow, setTimeWindow] = useState("day");
+
+  // API call to get trending videos
   const {
     data: trendingData,
     isLoading,
     error,
-  } = useFetchTBDBQuery(`trending/all/${timeWindow}`);
+  } = useQuery({
+    queryKey: ["trending", timeWindow],
+    queryFn: () => fetchMoviesAndShows(`trending/all/${timeWindow}`),
+    staleTime: Infinity,
+  });
 
   const onTabChange = (tab) => {
     setTimeWindow(tab === "Day" ? "day" : "week");
