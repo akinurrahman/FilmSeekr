@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { generateTMDBImageUrl } from "../../utility/generateTMDBImageUrl";
-import { useFetchTBDBQuery } from "../../api/fetchMovies";
 import Img from "../../components/LazyLoadImg";
+import { useQuery } from "@tanstack/react-query";
+import { fetchMoviesAndShows } from "../../api/api";
 
 const Banner = () => {
   const [query, setQuery] = useState("");
@@ -10,7 +11,12 @@ const Banner = () => {
   const [placeholder, setPlaceholder] = useState("");
   const navigate = useNavigate();
 
-  const { data, isLoading } = useFetchTBDBQuery("trending/all/day");
+  // API call with react query
+  const { data, isLoading } = useQuery({
+    queryKey: ["trending", "day"],
+    queryFn: () => fetchMoviesAndShows("trending/all/day"),
+    staleTime: Infinity,
+  });
 
   // Randomly select an image from the fetched data
   useEffect(() => {
@@ -49,7 +55,7 @@ const Banner = () => {
         <div className="backdrop-img absolute left-0 top-0 h-full w-full overflow-hidden opacity-50">
           <Img
             src={background}
-            className=" w-screen object-cover object-center h-full"
+            className=" h-full w-screen object-cover object-center"
             alt="Background"
             placeholder={placeholder}
           />
