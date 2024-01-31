@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useFetchTBDBQuery } from "../../api/fetchMovies";
 import SwitchTabs from "../../components/SwitchTabs";
 import Crousel from "../../components/Crousel";
 import { fetchMoviesAndShows } from "../../api/api";

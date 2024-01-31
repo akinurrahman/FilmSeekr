@@ -1,11 +1,17 @@
 import React, { useState } from "react";
 import SwitchTabs from "../../components/SwitchTabs";
 import Crousel from "../../components/Crousel";
-import { useFetchTBDBQuery } from "../../api/fetchMovies";
+import { useQuery } from "@tanstack/react-query";
+import { fetchMoviesAndShows } from "../../api/api";
 
 const Popular = () => {
   const [mediaType, setMediaType] = useState("movie");
-  const { data, isLoading, error } = useFetchTBDBQuery(`${mediaType}/popular`);
+  // API call to get popular movies
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["popular", mediaType],
+    queryFn: () => fetchMoviesAndShows(`${mediaType}/popular`),
+    staleTime: Infinity,
+  });
 
   const onTabChange = (tab) => {
     setMediaType(tab === "Movie" ? "movie" : "tv");
