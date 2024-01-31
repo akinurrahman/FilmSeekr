@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 import SwitchTabs from "../../components/SwitchTabs";
 import Crousel from "../../components/Crousel";
-import { useFetchTBDBQuery } from "../../api/fetchMovies";
+import { useQuery } from "@tanstack/react-query";
+import { fetchMoviesAndShows } from "../../api/api";
 
 const TopRated = () => {
   const [mediaType, setMediaType] = useState("movie");
-  const { data, isLoading, error } = useFetchTBDBQuery(
-    `${mediaType}/top_rated`,
-  );
+
+  // API call to get top rated
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["toprated", mediaType],
+    queryFn: () => fetchMoviesAndShows(`${mediaType}/top_rated`),
+    staleTime: Infinity,
+  });
 
   const onTabChange = (tab) => {
     setMediaType(tab === "Movie" ? "movie" : "tv");
