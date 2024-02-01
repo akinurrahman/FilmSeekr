@@ -1,13 +1,18 @@
 import React from "react";
 import Crousel from "../../components/Crousel";
-import { useFetchTBDBQuery } from "../../api/fetchMovies";
 import { useParams } from "react-router-dom";
+import { fetchMoviesAndShows } from "../../api/api";
+import { useQuery } from "@tanstack/react-query";
 
 const Similer = () => {
   const { mediaType, id } = useParams();
-  const { data, isLoading, error } = useFetchTBDBQuery(
-    `${mediaType}/${id}/similar`,
-  );
+
+  // Fetch similer media using React Query
+  const { data, isLoading, error } = useQuery({
+    queryKey: [`similer ${mediaType} for ${id}`],
+    queryFn: () => fetchMoviesAndShows(`${mediaType}/${id}/similar`),
+    staleTime: Infinity,
+  });
   return (
     <section>
       <section className="mx-auto  flex w-full max-w-[1200px]   items-center justify-between px-5">

@@ -1,6 +1,5 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { useFetchTBDBQuery } from "../../api/fetchMovies";
 import { generateTMDBImageUrl } from "../../utility/generateTMDBImageUrl";
 import noPoster from "../../assets/no-poster.png";
 import Img from "../../components/LazyLoadImg";

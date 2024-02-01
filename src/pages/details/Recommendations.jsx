@@ -1,6 +1,5 @@
 import React from "react";
 import Crousel from "../../components/Crousel";
-import { useFetchTBDBQuery } from "../../api/fetchMovies";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { fetchMoviesAndShows } from "../../api/api";
