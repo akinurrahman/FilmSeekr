@@ -1,6 +1,6 @@
 import axios from "axios";
 const YOUTUBE_BASE_URL = "https://api.themoviedb.org/3/";
-const API_KEY = "a20fa27b2de91d2caa7afb4d44ec34e0";
+const API_KEY = import.meta.env.VITE_API_KEY;
 
 export const fetchMoviesAndShows = async (endpoints) => {
   const response = await axios.get(

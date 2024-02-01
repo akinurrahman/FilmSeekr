@@ -7,19 +7,32 @@ import Explore from "./pages/explore/Explore";
 import PageNotFound from "./pages/Not Found/PageNotFound";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
-import { useGetGenresQuery } from "./api/fetchMovies";
 import { useDispatch } from "react-redux";
 import { setAllGenres } from "./api/slices/genresSlice";
 import Testing from "./Testing";
+import { useQuery } from "@tanstack/react-query";
+import { fetchMoviesAndShows } from "./api/api";
 
 const App = () => {
   const dispatch = useDispatch();
-  const { data: movieGenres } = useGetGenresQuery("movie");
-  const { data: tvGenres } = useGetGenresQuery("tv");
+  // Fetch movie genres using React Query
+  const { data: movieGenres } = useQuery({
+    queryKey: ["genres", "movies"],
+    queryFn: () => fetchMoviesAndShows(`genre/movie/list`),
+    staleTime: Infinity,
+  });
 
+  // Fetch TV genres using React Query
+  const { data: tvGenres } = useQuery({
+    queryKey: ["genres", "tv"],
+    queryFn: () => fetchMoviesAndShows(`genre/tv/list`),
+    staleTime: Infinity,
+  });
+
+  // When both movieGenres and tvGenres are available, dispatch the combined genres to Redux
   useEffect(() => {
     if (movieGenres && tvGenres) {
-      const allGeners = [...movieGenres, ...tvGenres];
+      const allGeners = [...movieGenres.genres, ...tvGenres.genres];
       dispatch(setAllGenres(allGeners));
     }
   }, [dispatch, movieGenres, tvGenres]);
