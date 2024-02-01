@@ -6,12 +6,18 @@ import noPoster from "../../assets/no-poster.png";
 import Img from "../../components/LazyLoadImg";
 import dayjs from "dayjs";
 import { toHoursAndMinutes } from "../../utility/toHoursAndMinutes";
+import { useQuery } from "@tanstack/react-query";
+import { fetchMoviesAndShows } from "../../api/api";
 
 const Banner = () => {
   const { mediaType, id } = useParams();
 
-  // Fetch movie details using a custom hook
-  const { data } = useFetchTBDBQuery(`${mediaType}/${id}`);
+  // Fetch media details using React Query
+  const { data } = useQuery({
+    queryKey: [mediaType, id, "details"],
+    queryFn: () => fetchMoviesAndShows(`${mediaType}/${id}`),
+    staleTime: Infinity,
+  });
 
   // Extract relevant data for display
   const poster = generateTMDBImageUrl(data?.poster_path, "w500") || noPoster;
