@@ -2,12 +2,18 @@ import React from "react";
 import Crousel from "../../components/Crousel";
 import { useFetchTBDBQuery } from "../../api/fetchMovies";
 import { useParams } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { fetchMoviesAndShows } from "../../api/api";
 
 const Recommendations = () => {
   const { mediaType, id } = useParams();
-  const { data, isLoading, error } = useFetchTBDBQuery(
-    `${mediaType}/${id}/recommendations`,
-  );
+
+  // Fetch media recommendations using React Query
+  const { data, isLoading, error } = useQuery({
+    queryKey: [`${mediaType} recommandation for ${id}`],
+    queryFn: () => fetchMoviesAndShows(`${mediaType}/${id}/recommendations`),
+    staleTime: Infinity,
+  });
   return (
     <section>
       <section className="mx-auto  flex w-full max-w-[1200px]   items-center justify-between px-5">
