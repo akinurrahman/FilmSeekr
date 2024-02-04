@@ -40,6 +40,7 @@ const Explore = () => {
       dataLength={videos.length}
       next={fetchNextPage}
       hasMore={hasNextPage}
+      scrollThreshold={0.95}
     >
       {/* Display a grid of MediaCards */}
       <div className="mx-auto grid max-w-[1100px] grid-cols-2 gap-5 px-4 pt-[75px] sm:grid-cols-4 md:grid-cols-5">
