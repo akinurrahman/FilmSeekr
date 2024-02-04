@@ -17,7 +17,7 @@ const Explore = () => {
 
   // Fetch data using useInfiniteQuery hook
   const { data, fetchNextPage, hasNextPage, error } = useInfiniteQuery({
-    queryKey: [mediaType],
+    queryKey: [apiMediaType],
     queryFn: ({ pageParam }) =>
       fetchExploreMedia({
         mediaType: apiMediaType,
@@ -45,9 +45,9 @@ const Explore = () => {
       <div className="mx-auto grid max-w-[1100px] grid-cols-2 gap-5 px-4 pt-[75px] sm:grid-cols-4 md:grid-cols-5">
         {!error &&
           data &&
-          videos.map((currItem) => (
+          videos.map((currItem, index) => (
             <MediaCard
-              key={currItem.id}
+              key={`${currItem.id}-${index}`}
               currItem={currItem}
               mediaType={apiMediaType}
             />
