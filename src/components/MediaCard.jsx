@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import dayjs from "dayjs";
 import Img from "./LazyLoadImg";
 
-const MediaCard = ({ currItem }) => {
+const MediaCard = ({ currItem, mediaType }) => {
   const navigate = useNavigate();
 
   const poster_path = currItem?.poster_path || posterNotFound;
@@ -17,7 +17,9 @@ const MediaCard = ({ currItem }) => {
   return (
     <div
       className="min-w-[47%] cursor-pointer sm:min-w-[23%] md:min-w-[19%] xl:min-w-[16%]"
-      onClick={() => navigate(`/${currItem.media_type}/${currItem.id}`)}
+      onClick={() =>
+        navigate(`/${currItem.media_type || mediaType}/${currItem.id}`)
+      }
     >
       <div className="posterBlock relative w-full">
         {/* Displaying images */}

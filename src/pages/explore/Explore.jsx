@@ -10,15 +10,17 @@ const Explore = () => {
   const { mediaType } = useParams();
 
   // Function to map "Movies" to "movie" and anything else to "tv"
-  const getMediaTypeFromParam = (param) =>
-    param === "Movies" ? "movie" : "tv";
+  const getApiMediaType = (param) => (param === "Movies" ? "movie" : "tv");
+
+  // API mediaType for use in the query
+  const apiMediaType = getApiMediaType(mediaType);
 
   // Fetch data using useInfiniteQuery hook
   const { data, fetchNextPage, hasNextPage, error } = useInfiniteQuery({
     queryKey: [mediaType],
     queryFn: ({ pageParam }) =>
       fetchExploreMedia({
-        mediaType: getMediaTypeFromParam(mediaType),
+        mediaType: apiMediaType,
         pageParam,
       }),
     initialPageParam: 1,
@@ -44,8 +46,11 @@ const Explore = () => {
         {!error &&
           data &&
           videos.map((currItem) => (
-            // Render a MediaCard for each item in the videos array
-            <MediaCard key={currItem.id} currItem={currItem} />
+            <MediaCard
+              key={currItem.id}
+              currItem={currItem}
+              mediaType={apiMediaType}
+            />
           ))}
       </div>
     </InfiniteScroll>
