@@ -8,7 +8,11 @@ import PageNotFound from "./pages/Not Found/PageNotFound";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import { useDispatch } from "react-redux";
-import { setAllGenres } from "./api/slices/genresSlice";
+import {
+  setAllGenres,
+  setMovieGenres,
+  setTvGenres,
+} from "./api/slices/genresSlice";
 import Testing from "./Testing";
 import { useQuery } from "@tanstack/react-query";
 import { fetchMoviesAndShows } from "./api/api";
@@ -36,6 +40,17 @@ const App = () => {
       dispatch(setAllGenres(allGeners));
     }
   }, [dispatch, movieGenres, tvGenres]);
+
+  useEffect(() => {
+    if (movieGenres) {
+      dispatch(setMovieGenres(movieGenres.genres));
+    }
+  }, [dispatch, movieGenres]);
+  useEffect(() => {
+    if (tvGenres) {
+      dispatch(setTvGenres(tvGenres.genres));
+    }
+  }, [dispatch, tvGenres]);
 
   return (
     <Router>
