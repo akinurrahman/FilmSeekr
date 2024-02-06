@@ -27,7 +27,6 @@ body {
   height: 100%;
 }
 
-
 /* Hide the scrollbar but keep the functionality */
 body {
   scrollbar-width: thin;
@@ -42,8 +41,4 @@ body::-webkit-scrollbar {
 body::-webkit-scrollbar-thumb {
   background-color: transparent;
 }
-
-
-
-
 

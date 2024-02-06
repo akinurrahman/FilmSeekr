@@ -7,7 +7,8 @@ import MediaCard from "../../components/MediaCard";
 import { fetchExploreMedia } from "../../api/api";
 import { useSelector } from "react-redux";
 import Select from "react-select";
-import { sortbyData } from "../../assets/sortByData";
+import { sortbyData } from "../../utility/sortByData";
+import { customStyle } from "../../utility/customStyles";
 
 const Explore = () => {
   const { mediaType } = useParams();
@@ -81,9 +82,10 @@ const Explore = () => {
       scrollThreshold={0.85}
     >
       {/* Explore section with filters */}
-      <section className="mx-auto mt-[70px] max-w-[1100px]  justify-between px-4 text-lg md:flex">
-        <div>Explore {mediaType}</div>
-        <div className=" my-2 gap-2 md:flex md:min-w-[500px] md:max-w-[500px]">
+      <section className="mx-auto mt-[70px] max-w-[1100px]  items-center justify-between  px-4 text-lg md:flex">
+        <div className="text-2xl">Explore {mediaType}</div>
+        <div className=" my-2 gap-2 space-y-2  md:flex">
+          <div></div>
           {/* Select component for genres */}
           <Select
             isMulti
@@ -92,9 +94,8 @@ const Explore = () => {
             getOptionLabel={(option) => option.name}
             getOptionValue={(option) => option.id}
             placeholder="Select genres"
-            className="mb-2 w-full"
-            classNamePrefix="react-select"
             onChange={onChange}
+            styles={customStyle}
           />
           {/* Select component for sorting options */}
           <Select
@@ -104,9 +105,8 @@ const Explore = () => {
             getOptionValue={(option) => option.value}
             placeholder="Sort By"
             isClearable={true}
-            className="w-full "
-            classNamePrefix="react-select"
             onChange={onChange}
+            styles={customStyle}
           />
         </div>
       </section>
