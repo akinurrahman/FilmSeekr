@@ -81,9 +81,9 @@ const Explore = () => {
       scrollThreshold={0.85}
     >
       {/* Explore section with filters */}
-      <section className="mx-auto mt-[70px] grid max-w-[1100px] px-4 text-lg">
+      <section className="mx-auto mt-[70px] max-w-[1100px]  justify-between px-4 text-lg md:flex">
         <div>Explore {mediaType}</div>
-        <div className="filter">
+        <div className=" my-2 gap-2 md:flex md:min-w-[500px] md:max-w-[500px]">
           {/* Select component for genres */}
           <Select
             isMulti
@@ -92,7 +92,7 @@ const Explore = () => {
             getOptionLabel={(option) => option.name}
             getOptionValue={(option) => option.id}
             placeholder="Select genres"
-            className=""
+            className="mb-2 w-full"
             classNamePrefix="react-select"
             onChange={onChange}
           />
@@ -104,7 +104,7 @@ const Explore = () => {
             getOptionValue={(option) => option.value}
             placeholder="Sort By"
             isClearable={true}
-            className=""
+            className="w-full "
             classNamePrefix="react-select"
             onChange={onChange}
           />
