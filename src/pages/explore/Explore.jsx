@@ -40,11 +40,23 @@ const Explore = () => {
   // Extract videos from the data and flatten the array
   const videos = data?.pages.flatMap((page) => page.results) || [];
 
-  const onChange = (selectedGenres) => {
-    if (selectedGenres) {
-      const selectedGenreIds = selectedGenres.map((genre) => genre.id);
+  const onChange = (selectedItems, action) => {
+    if (action.name === "genres") {
+      const selectedGenreIds = selectedItems.map((genre) => genre.id);
       const genresString = selectedGenreIds.join(",");
       setGenresForApi(genresString);
+
+      if (action.action === "clear") {
+        setGenresForApi(null);
+      } else if (action.action === "remove-value") {
+        const removedOptionId = action.removedValue.id;
+        const updatedSelectedItems = selectedItems.filter(
+          (item) => item.id !== removedOptionId,
+        );
+        const updatedGenreIds = updatedSelectedItems.map((item) => item.id);
+        const updatedGenresString = updatedGenreIds.join(",");
+        setGenresForApi(updatedGenresString);
+      }
     }
   };
 
@@ -65,10 +77,20 @@ const Explore = () => {
             getOptionLabel={(option) => option.name}
             getOptionValue={(option) => option.id}
             placeholder="Select genres"
+            className=""
+            classNamePrefix="react-select"
+            onChange={onChange}
+          />
+          {/* <Select
+            name="genres"
+            options={mediaType === "Movies" ? movieGenres : tvGenres}
+            getOptionLabel={(option) => option.name}
+            getOptionValue={(option) => option.id}
+            placeholder="Select genres"
             className="react-select-container genresDD"
             classNamePrefix="react-select"
             onChange={(selectedGenres) => onChange(selectedGenres)}
-          />
+          /> */}
         </div>
       </section>
 
