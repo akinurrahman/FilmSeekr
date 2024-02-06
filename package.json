@@ -22,7 +22,8 @@
     "react-infinite-scroll-component": "^6.1.0",
     "react-lazy-load-image-component": "^1.6.0",
     "react-redux": "^9.0.4",
-    "react-router-dom": "^6.21.1"
+    "react-router-dom": "^6.21.1",
+    "react-select": "^5.8.0"
   },
   "devDependencies": {
     "@tanstack/eslint-plugin-query": "^5.17.22",

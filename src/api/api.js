@@ -20,11 +20,16 @@ export const searchMoviesAndShows = async ({ query, pageParam }) => {
   return res.data;
 };
 
-export const fetchExploreMedia = async ({ pageParam, mediaType }) => {
+export const fetchExploreMedia = async ({
+  pageParam,
+  mediaType,
+  genres = "",
+}) => {
   const response = await axios.get(`${TMDB_BASE_URL}/discover/${mediaType}`, {
     params: {
       api_key: API_KEY,
       page: pageParam,
+      with_genres: genres,
     },
   });
 

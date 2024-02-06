@@ -1,13 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 import MediaCard from "../../components/MediaCard";
 import { fetchExploreMedia } from "../../api/api";
+import { useSelector } from "react-redux";
+import Select from "react-select";
 
 const Explore = () => {
   const { mediaType } = useParams();
+  const { movieGenres, tvGenres } = useSelector((state) => state.genres);
+  const [genresForApi, setGenresForApi] = useState(null);
 
   // Function to map "Movies" to "movie" and anything else to "tv"
   const getApiMediaType = (param) => (param === "Movies" ? "movie" : "tv");
@@ -17,11 +21,12 @@ const Explore = () => {
 
   // Fetch data using useInfiniteQuery hook
   const { data, fetchNextPage, hasNextPage, error } = useInfiniteQuery({
-    queryKey: [apiMediaType],
+    queryKey: [mediaType, genresForApi],
     queryFn: ({ pageParam }) =>
       fetchExploreMedia({
         mediaType: apiMediaType,
         pageParam,
+        genres: genresForApi,
       }),
     initialPageParam: 1,
     getNextPageParam: (lastPage) => {
@@ -35,15 +40,40 @@ const Explore = () => {
   // Extract videos from the data and flatten the array
   const videos = data?.pages.flatMap((page) => page.results) || [];
 
+  const onChange = (selectedGenres) => {
+    if (selectedGenres) {
+      const selectedGenreIds = selectedGenres.map((genre) => genre.id);
+      const genresString = selectedGenreIds.join(",");
+      setGenresForApi(genresString);
+    }
+  };
+
   return (
     <InfiniteScroll
       dataLength={videos.length}
       next={fetchNextPage}
       hasMore={hasNextPage}
-      scrollThreshold={0.95}
+      scrollThreshold={0.85}
     >
+      <section className="mx-auto mt-[70px] grid max-w-[1100px] px-4 text-lg">
+        <div>Explore {mediaType}</div>
+        <div className="filter">
+          <Select
+            isMulti
+            name="genres"
+            options={mediaType === "Movies" ? movieGenres : tvGenres}
+            getOptionLabel={(option) => option.name}
+            getOptionValue={(option) => option.id}
+            placeholder="Select genres"
+            className="react-select-container genresDD"
+            classNamePrefix="react-select"
+            onChange={(selectedGenres) => onChange(selectedGenres)}
+          />
+        </div>
+      </section>
+
       {/* Display a grid of MediaCards */}
-      <div className="mx-auto grid max-w-[1100px] grid-cols-2 gap-5 px-4 pt-[75px] sm:grid-cols-4 md:grid-cols-5">
+      <div className="mx-auto mt-4 grid max-w-[1100px] grid-cols-2 gap-5 px-4 sm:grid-cols-4 md:grid-cols-5">
         {!error &&
           data &&
           videos.map((currItem, index) => (

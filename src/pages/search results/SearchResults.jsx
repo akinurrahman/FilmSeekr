@@ -43,13 +43,14 @@ const SearchResults = () => {
         </div>
       )}
 
+      
       {/* Display search results using Infinite Scroll */}
       {!isLoading && !error && (
         <InfiniteScroll
           dataLength={searchResults?.length}
           next={fetchNextPage}
           hasMore={hasNextPage}
-          scrollThreshold={0.95}
+          scrollThreshold={0.85}
           endMessage={<p>No more videos</p>}
           className="mx-auto grid max-w-[1100px] grid-cols-2 gap-5 px-4 pt-[75px] sm:grid-cols-4 md:grid-cols-5"
         >
