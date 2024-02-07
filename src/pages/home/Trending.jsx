@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import SwitchTabs from "../../components/SwitchTabs";
 import Crousel from "../../components/Crousel";
-import { fetchMoviesAndShows } from "../../api/api";
+import { fetchMoviesAndShows } from "../../api/queries";
 import { useQuery } from "@tanstack/react-query";
 
 const Trending = () => {

@@ -6,7 +6,7 @@ import Img from "../../components/LazyLoadImg";
 import dayjs from "dayjs";
 import { toHoursAndMinutes } from "../../utility/toHoursAndMinutes";
 import { useQuery } from "@tanstack/react-query";
-import { fetchMoviesAndShows } from "../../api/api";
+import { fetchMoviesAndShows } from "../../api/queries";
 
 const Banner = () => {
   const { mediaType, id } = useParams();

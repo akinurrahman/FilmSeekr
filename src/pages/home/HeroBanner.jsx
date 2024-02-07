@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { generateTMDBImageUrl } from "../../utility/generateTMDBImageUrl";
 import Img from "../../components/LazyLoadImg";
 import { useQuery } from "@tanstack/react-query";
-import { fetchMoviesAndShows } from "../../api/api";
+import { fetchMoviesAndShows } from "../../api/queries";
 
 const Banner = () => {
   const [query, setQuery] = useState("");

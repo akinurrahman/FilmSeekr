@@ -13,9 +13,8 @@ import {
   setMovieGenres,
   setTvGenres,
 } from "./api/slices/genresSlice";
-import Testing from "./Testing";
 import { useQuery } from "@tanstack/react-query";
-import { fetchMoviesAndShows } from "./api/api";
+import { fetchMoviesAndShows } from "./api/queries";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -60,7 +59,6 @@ const App = () => {
         <Route path="/:mediaType/:id" element={<Details />} />
         <Route path="/search/:query" element={<SearchResults />} />
         <Route path="/explore/:mediaType" element={<Explore />} />
-        <Route path="/testing" element={<Testing />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
       <Footer />

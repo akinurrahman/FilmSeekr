@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
 import MediaCard from "../../components/MediaCard";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { searchMoviesAndShows } from "../../api/api";
+import { searchMoviesAndShows } from "../../api/queries";
 import { skeletons } from "../../components/Skeleton";
 
 const SearchResults = () => {

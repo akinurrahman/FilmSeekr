@@ -4,7 +4,7 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 import MediaCard from "../../components/MediaCard";
-import { fetchExploreMedia } from "../../api/api";
+import { fetchExploreMedia } from "../../api/queries";
 import { useSelector } from "react-redux";
 import Select from "react-select";
 import { sortbyData } from "../../utility/sortByData";

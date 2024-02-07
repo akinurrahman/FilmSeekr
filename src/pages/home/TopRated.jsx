@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import SwitchTabs from "../../components/SwitchTabs";
 import Crousel from "../../components/Crousel";
 import { useQuery } from "@tanstack/react-query";
-import { fetchMoviesAndShows } from "../../api/api";
+import { fetchMoviesAndShows } from "../../api/queries";
 
 const TopRated = () => {
   const [mediaType, setMediaType] = useState("movie");

@@ -2,7 +2,7 @@ import React from "react";
 import Crousel from "../../components/Crousel";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { fetchMoviesAndShows } from "../../api/api";
+import { fetchMoviesAndShows } from "../../api/queries";
 
 const Recommendations = () => {
   const { mediaType, id } = useParams();

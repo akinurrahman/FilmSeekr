@@ -1,7 +1,7 @@
 import React from "react";
 import Crousel from "../../components/Crousel";
 import { useParams } from "react-router-dom";
-import { fetchMoviesAndShows } from "../../api/api";
+import { fetchMoviesAndShows } from "../../api/queries";
 import { useQuery } from "@tanstack/react-query";
 
 const Similer = () => {
